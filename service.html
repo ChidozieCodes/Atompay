@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtomPay | Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Font import to use Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Global Styles (from your provided code) */
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-light-gray: #F9F9FB;
+            --primary: #8A3FFC; /* Vibrant Orchid Purple */
+            --accent: #EC4899;  /* Bright Rose Pink */
+            --text-dark: #111827; /* Dark Gray for text */
+            --text-muted: #6B7280; /* Lighter text for subtitles */
+            --border-color: #E5E7EB;
+            --font-main: 'Inter', sans-serif; /* Inter font */
+            --transition-speed: 0.3s ease;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            letter-spacing: -2px;
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .section-header p {
+             max-width: 600px;
+             margin-left: auto;
+             margin-right: auto;
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--bg-white);
+            box-shadow: 0 4px 15px rgba(138, 63, 252, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--bg-light-gray);
+            color: var(--accent);
+        }
+
+
+        /* Header */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        .nav-logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-dark);
+        }
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* Services Section Specific Styles */
+        .services-section {
+            padding: 80px 0;
+            background-color: var(--bg-white);
+            text-align: center;
+        }
+
+        .services-section .section-header {
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            text-align: left;
+        }
+
+        .service-card {
+            background-color: var(--bg-light-gray);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, rgba(138, 63, 252, 0.1), rgba(236, 72, 153, 0.1));
+            color: var(--primary);
+            flex-shrink: 0;
+            margin-bottom: 15px; /* Added margin-bottom for spacing */
+        }
+
+        .service-card-icon-wrapper svg {
+            width: 32px;
+            height: 32px;
+            stroke-width: 2;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            color: var(--text-dark); /* Ensure heading color */
+        }
+
+        .service-card p {
+            margin-bottom: 0; /* Remove default paragraph margin */
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta-content {
+            background: var(--bg-light-gray);
+            padding: 64px 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .cta-content h2 {
+            margin-bottom: 16px;
+        }
+        .cta-content p {
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        .main-footer {
+            padding: 60px 0 20px 0;
+            background-color: var(--bg-light-gray);
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li a {
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .social-links a {
+            color: var(--text-muted);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-bottom p {
+            color: var(--text-muted);
+        }
+        
+        /* Responsive Adjustments */
+        @media(max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width: 767px) {
+            .nav-links, .nav-actions .btn-outline {
+                display: none; /* Simplification for demo, requires JS for menu toggle */
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="nav-logo">Atom<span>Pay</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html" class="active">Services</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="register.html" class="btn btn-primary">Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Our Services</h2>
+                    <p>Discover the range of convenient and reliable services AtomPay offers to simplify your daily transactions.</p>
+                </header>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-card-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 10H7v4h10V10zM12 21a2 2 0 01-2-2v-4a2 2 0 012-2h0a2 2 0 012 2v4a2 2 0 01-2 2zM12 3a2 2 0 00-2 2v4a2 2 0 002 2h0a2 2 0 002-2V5a2 2 0 00-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3>Airtime Recharge</h3>
+                        <p>Instantly top-up your mobile phone with airtime from all major networks in Nigeria.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <path d="M8 14h.01"></path>
+                                <path d="M12 14h.01"></path>
+                                <path d="M16 14h.01"></path>
+                                <path d="M8 18h.01"></path>
+                                <path d="M12 18h.01"></path>
+                                <path d="M16 18h.01"></path>
+                            </svg>
+                        </div>
+                        <h3>Data Bundles</h3>
+                        <p>Purchase affordable data bundles for browsing, streaming, and staying connected.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </div>
+                        <h3>Electricity Bills</h3>
+                        <p>Pay your prepaid or postpaid electricity bills easily and avoid disconnections.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                                <polyline points="17 2 12 7 7 2"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Cable TV Subscriptions</h3>
+                        <p>Renew your DStv, GOtv, Startimes, and other cable TV subscriptions instantly.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="8" y1="12" x2="16" y2="12"></line>
+                                <line x1="12" y1="16" x2="12" y2="8"></line>
+                            </svg>
+                        </div>
+                        <h3>Other Bill Payments</h3>
+                        <p>Pay for a wide range of other services including internet, education, and transport fees.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-icon-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21.2 15.6l-3.2-3.2c-.4-.4-.9-.6-1.4-.6s-1 .2-1.4.6l-3.2 3.2c-.8.8-.8 2.1 0 2.8l3.2 3.2c.4.4.9.6 1.4.6s1-.2 1.4-.6l3.2-3.2c.8-.8.8-2.1 0-2.8z"></path>
+                                <path d="M3 11a5 5 0 015-5h13a5 5 0 015 5v2a5 5 0 01-5 5h-4"></path>
+                            </svg>
+                        </div>
+                        <h3>Wallet Management</h3>
+                        <p>Securely fund your AtomPay wallet and track all your transactions in one place.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Simplify Your Finances?</h2>
+                    <p>Download the AtomPay app today and join thousands of Nigerians taking control of their payments.</p>
+                    <a href="#" class="btn btn-primary">Download The App Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="nav-logo">Atom<span>Pay</span></a>
+                    <p>Your money, moving at the speed of life.</p>
+                    <div class="social-links">
+                        <a href="#">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                         <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                         </a>
+                         <a href="#">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                         </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Disputes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AtomPay. All Rights Reserved. Built with care in Port Harcourt, Nigeria.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtomPay | Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Updated font import to include Laila and Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800" rel="stylesheet">
+    <style>
+        /* CSS Reset & Global Styles (from your provided code) */
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-light-gray: #F9F9FB;
+            --primary: #8A3FFC; /* Vibrant Orchid Purple */
+            --accent: #EC4899;  /* Bright Rose Pink */
+            --text-dark: #111827; /* Dark Gray for text */
+            --text-muted: #6B7280; /* Lighter text for subtitles */
+            --border-color: #E5E7EB;
+            --font-main: 'Inter', sans-serif; /* Prioritize Laila, fallback to Inter */
+            --transition-speed: 0.3s ease;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-light-gray); /* Slightly lighter background for login page */
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full viewport height */
+            padding: 20px; /* Add some padding for smaller screens */
+        }
+        
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            letter-spacing: -2px;
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .section-header p {
+             max-width: 600px;
+             margin-left: auto;
+             margin-right: auto;
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--bg-white);
+            box-shadow: 0 4px 15px rgba(138, 63, 252, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--bg-light-gray);
+            color: var(--accent);
+        }
+
+        /* Form Specific Styles */
+        .auth-wrapper {
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px; /* Max width for the form container */
+            text-align: center;
+            position: relative; /* Needed for absolute positioning of back icon */
+        }
+
+        /* Back to Home Icon */
+        .back-home-icon {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            color: var(--text-muted);
+            font-size: 24px; /* Adjust size as needed */
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .back-home-icon:hover {
+            color: var(--primary);
+        }
+
+        .back-home-icon svg {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+
+
+        .auth-logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-bottom: 30px;
+            display: block;
+        }
+        .auth-logo span {
+            color: var(--primary);
+        }
+
+        .auth-wrapper h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .auth-wrapper p.subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            color: var(--text-dark);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(138, 63, 252, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-actions .remember-me { /* Renamed to .form-actions .policy-agree for Register */
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-actions .remember-me input[type="checkbox"] { /* Renamed to .form-actions .policy-agree input[type="checkbox"] */
+            margin-right: 8px;
+            accent-color: var(--primary); /* Styles the checkbox */
+        }
+
+        .form-actions .forgot-password { /* Not used on Register page, but kept for consistency */
+            font-size: 0.9rem;
+        }
+
+        .auth-wrapper .btn-primary {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+        }
+
+        .auth-switch {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+        .auth-switch a {
+            font-weight: 600;
+        }
+
+        /* Responsive Adjustments */
+        @media(max-width: 767px) {
+            .auth-wrapper {
+                padding: 30px 20px;
+            }
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .back-home-icon {
+                top: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <!-- Back to Home Icon -->
+        <a href="index.html" class="back-home-icon" title="Go back to Home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+        </a>
+
+        <a href="#" class="auth-logo">Atom<span>Pay</span></a>
+        <h2>Join AtomPay Today!</h2>
+        <p class="subtitle">Create your account to get started.</p>
+
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+            </div>
+            <div class="form-actions">
+                <div class="policy-agree">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the <a href="#">Terms & Conditions</a></label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register Account</button>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="login.html">Login Here</a></p>
+    </div>
+
+</body>
+</html>

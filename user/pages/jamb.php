@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AtomPay | Buy JAMB Pin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Font import to use Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Global Styles */
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-light-gray: #F9F9FB;
+            --primary: #8A3FFC; /* Vibrant Orchid Purple */
+            --accent: #EC4899;  /* Bright Rose Pink */
+            --text-dark: #111827; /* Dark Gray for text */
+            --text-muted: #6B7280; /* Lighter text for subtitles */
+            --border-color: #E5E7EB;
+            --font-main: 'Inter', sans-serif; /* Inter font */
+            --transition-speed: 0.3s ease;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-light-gray); /* Light background for the page */
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full viewport height */
+        }
+        
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+        h1 {
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            letter-spacing: -2px;
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .section-header p {
+             max-width: 600px;
+             margin-left: auto;
+             margin-right: auto;
+        }
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        a:hover {
+            color: var(--accent);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: var(--bg-white);
+            box-shadow: 0 4px 15px rgba(138, 63, 252, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+        }
+        .btn-outline:hover {
+            background-color: var(--bg-light-gray);
+            color: var(--accent);
+        }
+
+        /* Header (for dashboard-like pages) */
+        .page-header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .page-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+        .page-logo span {
+            color: var(--primary);
+        }
+
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+        .back-link:hover {
+            color: var(--primary);
+        }
+        .back-link svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex-grow: 1; /* Allows main content to expand and push footer down */
+            padding: 60px 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to start for scrollable content */
+        }
+
+        .jamb-pin-card {
+            background-color: var(--bg-white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            width: 100%;
+            max-width: 550px; /* Consistent width for forms */
+            text-align: center;
+            position: relative;
+        }
+
+        .jamb-pin-card h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .jamb-pin-card p.subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+            -webkit-appearance: none; /* Remove default select arrow for selects */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+        }
+
+        .form-group input[type="email"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(138, 63, 252, 0.15);
+        }
+
+        .price-display {
+            background-color: var(--bg-light-gray);
+            border: 1px dashed var(--primary);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-display .label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .price-display .amount {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: -webkit-linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .jamb-pin-card .btn-primary {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        .main-footer {
+            padding: 40px 0 20px 0;
+            background-color: var(--bg-white);
+            border-top: 1px solid var(--border-color);
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li a {
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .social-links a {
+            color: var(--text-muted);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-bottom p {
+            color: var(--text-muted);
+        }
+        
+        /* Responsive Adjustments */
+        @media(max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width: 767px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .main-content {
+                padding: 40px 0;
+            }
+            .jamb-pin-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container page-navbar">
+            <a href="../index.php" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                Back to Dashboard
+            </a>
+            <a href="../index.php" class="page-logo">Atom<span>Pay</span></a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="jamb-pin-card">
+            <h2>Buy JAMB Pin</h2>
+            <p class="subtitle">Purchase your JAMB UTME or Direct Entry registration pins easily.</p>
+
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="jambType">Select JAMB Exam Type</label>
+                    <select id="jambType" name="jambType" required>
+                        <option value="">-- Select Exam Type --</option>
+                        <option value="utme">UTME (Unified Tertiary Matriculation Examination)</option>
+                        <option value="direct-entry">Direct Entry</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="examYear">Exam Year</label>
+                    <select id="examYear" name="examYear" required>
+                        <option value="">-- Select Year --</option>
+                        <script>
+                            // Dynamically populate years (current year + next 1 year for future registration, and past 5 years)
+                            const currentYear = new Date().getFullYear();
+                            document.write(`<option value="${currentYear + 1}">${currentYear + 1}</option>`); // Next year
+                            for (let i = currentYear; i >= currentYear - 5; i--) {
+                                document.write(`<option value="${i}">${i}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email to Receive Pin</label>
+                    <input type="email" id="email" name="email" placeholder="e.g., yourname@example.com" required>
+                    <small class="text-muted">The purchased pin will be sent to this email address.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="5" required>
+                </div>
+                
+                <div class="price-display">
+                    <span class="label">Total Amount:</span>
+                    <span class="amount" id="totalAmount">₦ 0.00</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Buy JAMB Pin Now</button>
+            </form>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="page-logo">Atom<span>Pay</span></a>
+                    <p>Your money, moving at the speed of life.</p>
+                    <div class="social-links">
+                        <a href="#">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                         <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                         </a>
+                         <a href="#">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                         </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Security</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Disputes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AtomPay. All Rights Reserved. Built with care in Port Harcourt, Nigeria.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const jambTypeSelect = document.getElementById('jambType');
+            const quantityInput = document.getElementById('quantity');
+            const totalAmountSpan = document.getElementById('totalAmount');
+
+            // Define prices (example values, replace with actual)
+            const prices = {
+                utme: 5000, // Example price for JAMB UTME pin
+                'direct-entry': 6000 // Example price for JAMB Direct Entry pin
+            };
+
+            function calculateTotal() {
+                const selectedJambType = jambTypeSelect.value;
+                const quantity = parseInt(quantityInput.value);
+
+                if (selectedJambType && !isNaN(quantity) && quantity > 0) {
+                    const unitPrice = prices[selectedJambType];
+                    if (unitPrice) {
+                        const total = unitPrice * quantity;
+                        totalAmountSpan.textContent = `₦ ${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                    } else {
+                        totalAmountSpan.textContent = `₦ 0.00`;
+                    }
+                } else {
+                    totalAmountSpan.textContent = `₦ 0.00`;
+                }
+            }
+
+            jambTypeSelect.addEventListener('change', calculateTotal);
+            quantityInput.addEventListener('input', calculateTotal);
+
+            // Initial calculation on page load
+            calculateTotal();
+        });
+    </script>
+
+</body>
+</html>
